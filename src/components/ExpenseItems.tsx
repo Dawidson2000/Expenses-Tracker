@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
+import {ExpenseDate} from './ExpenseDate';
+
 const ExpenseItem = styled.div`
     display: flex;
     justify-content: space-between;
@@ -41,17 +43,18 @@ const ExpenseItem_Price = styled.div`
     border-radius: 12px;   
 `;
 
-export interface IExpenseItems{
-    id: string, 
-    title: string, 
-    amount: number, 
+export interface IExpenseItems {
+    id: string,
+    title: string,
+    amount: number,
     date: Date,
 }
 
 export const ExpenseItems: FC<IExpenseItems> = (props) => {
+
     return (
         <ExpenseItem>
-            <div>{props.date.toLocaleDateString()}</div>
+            <ExpenseDate date = {props.date}/>
             <ExpenseItem_Description>
                 <h2>{props.title}</h2>
                 <ExpenseItem_Price>${props.amount}</ExpenseItem_Price>
