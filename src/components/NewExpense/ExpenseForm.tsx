@@ -63,18 +63,20 @@ export const ExpenseForm: FC = (props) => {
     const[amount, setAmount] = useState<string>('');
     const[date, setDate] = useState<string>('');
 
-    // const [userInput, setUserInput] = useState<IUsersInputs>({
-    //     enteredTitle: '',
-    //     enteredAmount: '',
-    //     enteredDate: '',
-    // })
+    const [userInput, setUserInput] = useState<IUsersInputs>({
+        enteredTitle: '',
+        enteredAmount: '',
+        enteredDate: '',
+    })
 
     const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value)
 
-        // setUserInput({
-        //     ...userInput,
-        //     enteredTitle: event.target.value
+        // setUserInput((prevState)=>{
+        //     return{
+        //         ...prevState,
+        //         enteredTitle: event.target.value
+        //     }
         // })
     }
     const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
