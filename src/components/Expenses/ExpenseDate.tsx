@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
+import { BasicWrapper } from '../styledHelpers/BasicWrapper';
+
 export interface IExpenseDate {
     date: Date,
 }
 
-const ExpenseDateWrapper = styled.div`
+const ExpenseDateWrapper = styled(BasicWrapper)`
     display: flex;
     flex-direction: column;
     width: 5.5rem;
@@ -14,7 +16,6 @@ const ExpenseDateWrapper = styled.div`
     border: 1px solid #ececec;
     background-color: #2a2a2a;
     color: white;
-    border-radius: 12px;
     align-items: center;
     justify-content: center;
 `;
@@ -43,7 +44,7 @@ export const ExpenseDate: FC<IExpenseDate> = (props) => {
     const year = props.date.getFullYear();
 
     return (
-        <ExpenseDateWrapper>
+        <ExpenseDateWrapper className>
             <ExpenseDate_Month>{month}</ExpenseDate_Month>
             <ExpenseDate_Day>{day}</ExpenseDate_Day>
             <ExpenseDate_Year>{year}</ExpenseDate_Year>

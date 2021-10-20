@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import { FC } from 'react';
 
 import {ExpenseDate} from './ExpenseDate';
+import { BasicWrapper } from '../styledHelpers/BasicWrapper';
 
-const ExpenseItem = styled.div`
+const ExpenseItem = styled(BasicWrapper)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     padding: 0.5rem;
     margin: 1rem 0;
-    border-radius: 12px;
     background-color: #4b4b4b;
 `;
 
@@ -52,13 +51,16 @@ export interface IExpenseItems {
 
 export const ExpenseItems: FC<IExpenseItems> = (props) => {
 
+
+
     return (
-        <ExpenseItem>
+        <ExpenseItem className>
             <ExpenseDate date = {props.date}/>
             <ExpenseItem_Description>
                 <h2>{props.title}</h2>
                 <ExpenseItem_Price>${props.amount}</ExpenseItem_Price>
             </ExpenseItem_Description>
+            <button>Change Title</button>
         </ExpenseItem>
     )
 }
