@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
@@ -51,21 +51,53 @@ const NewExpenseActions = styled.div`
     }
 `;
 
+export interface IUsersInputs {
+    enteredTitle: string,
+    enteredAmount: string,
+    enteredDate: string,
+}
+
 export const ExpenseForm: FC = (props) => {
+
+    const[title, setTitle] = useState<string>('');
+    const[amount, setAmount] = useState<string>('');
+    const[date, setDate] = useState<string>('');
+
+    // const [userInput, setUserInput] = useState<IUsersInputs>({
+    //     enteredTitle: '',
+    //     enteredAmount: '',
+    //     enteredDate: '',
+    // })
+
+    const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(event.target.value)
+
+        // setUserInput({
+        //     ...userInput,
+        //     enteredTitle: event.target.value
+        // })
+    }
+    const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAmount(event.target.value)
+    }
+    const dateChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDate(event.target.value)      
+    }
+
     return (
         <form>
             <NewExpenseControls>
                 <NewExpenseControl>
                     <label>Title</label>
-                    <input type='text' />
+                    <input type='text' onChange={titleChangeHandler}/>
                 </NewExpenseControl>
                 <NewExpenseControl>
                     <label>Amount</label>
-                    <input type='number' min='0.01' step='0.01' />
+                    <input type='number' min='0.01' step='0.01' onChange={amountChangeHandler} />
                 </NewExpenseControl>
                 <NewExpenseControl>
                     <label>Date</label>
-                    <input type='date' min='2019-01-01' max='2022-12-31' />
+                    <input type='date' min='2019-01-01' max='2022-12-31' onChange={dateChangeHandler} />
                 </NewExpenseControl>
             </NewExpenseControls>
             <NewExpenseActions>
