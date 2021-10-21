@@ -51,8 +51,6 @@ export interface IExpenseItems {
 
 export const ExpenseItems: FC<IExpenseItems> = (props) => {
 
-
-
     return (
         <ExpenseItem className>
             <ExpenseDate date = {props.date}/>

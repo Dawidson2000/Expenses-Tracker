@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
 import { ExpenseItems } from './ExpenseItems';
 import { BasicWrapper } from '../styledHelpers/BasicWrapper';
+import { ExpenseFilter } from '../Expenses/ExpensesFilter';
 
 import type { Expense } from '../../models/ExpenseTypes/ExpenseType';
 
@@ -21,8 +22,16 @@ export interface IExpenses {
 
 export const Expenses: FC<IExpenses> = (props) => {
 
+    const [filteredYear, setFilteredYear] = useState<string>('2021');
+
+    const setSelectedYearHandler = (selectedYear: string) => {
+        setFilteredYear(selectedYear);
+        console.log(selectedYear);
+    }
+
     return (
         <ExpenseWrapper className=''>
+            <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler}/>
             <ExpenseItems
                 id={props.expense[0].id}
                 title={props.expense[0].title}
