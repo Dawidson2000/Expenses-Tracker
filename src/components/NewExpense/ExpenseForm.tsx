@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
+import type { EnteredExpense } from '../../models/ExpenseTypes/EnteredExpenseType';
+
 const NewExpenseControls = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -51,26 +53,24 @@ const NewExpenseActions = styled.div`
     }
 `;
 
-export interface IUsersInputs {
-    enteredTitle: string,
-    enteredAmount: string,
-    enteredDate: string,
+export interface IExpenseForm {
+    onSaveExpenseData: (enteredExpenseData: EnteredExpense) => void       
 }
 
-export const ExpenseForm: FC = (props) => {
+export const ExpenseForm: FC<IExpenseForm> = (props) => {
 
-    const[title, setTitle] = useState<string>('');
-    const[amount, setAmount] = useState<string>('');
-    const[date, setDate] = useState<string>('');
+    const [enteredTitle, setEnteredTitle] = useState<string>('');
+    const [enteredAmount, setEnteredAmount] = useState<string>('');
+    const [enteredDate, setEnteredDate] = useState<string>('');
 
-    const [userInput, setUserInput] = useState<IUsersInputs>({
-        enteredTitle: '',
-        enteredAmount: '',
-        enteredDate: '',
-    })
+    // const [userInput, setUserInput] = useState<IUsersInputs>({
+    //     enteredTitle: '',
+    //     enteredAmount: '',
+    //     enteredDate: '',
+    // })
 
     const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.target.value)
+        setEnteredTitle(event.target.value)
 
         // setUserInput((prevState)=>{
         //     return{
@@ -80,26 +80,58 @@ export const ExpenseForm: FC = (props) => {
         // })
     }
     const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(event.target.value)
+        setEnteredAmount(event.target.value)
     }
     const dateChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDate(event.target.value)      
+        setEnteredDate(event.target.value)
+    }
+
+    const submitHandler = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+
+        const expenseData = {
+            title: enteredTitle,
+            amount: +enteredAmount,
+            date: new Date(enteredDate)
+        }
+        setEnteredAmount('');
+        setEnteredDate('');
+        setEnteredTitle('');
+
+        props.onSaveExpenseData(expenseData);
+
     }
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <NewExpenseControls>
                 <NewExpenseControl>
                     <label>Title</label>
-                    <input type='text' onChange={titleChangeHandler}/>
+                    <input
+                        type='text'
+                        onChange={titleChangeHandler}
+                        value={enteredTitle}
+                    />
                 </NewExpenseControl>
                 <NewExpenseControl>
                     <label>Amount</label>
-                    <input type='number' min='0.01' step='0.01' onChange={amountChangeHandler} />
+                    <input
+                        type='number'
+                        min='0.01'
+                        step='0.01'
+                        onChange={amountChangeHandler}
+                        value={enteredAmount}
+                    />
                 </NewExpenseControl>
                 <NewExpenseControl>
                     <label>Date</label>
-                    <input type='date' min='2019-01-01' max='2022-12-31' onChange={dateChangeHandler} />
+                    <input
+                        type='date'
+                        min='2019-01-01'
+                        max='2022-12-31'
+                        onChange={dateChangeHandler}
+                        value={enteredDate}
+                    />
                 </NewExpenseControl>
             </NewExpenseControls>
             <NewExpenseActions>
