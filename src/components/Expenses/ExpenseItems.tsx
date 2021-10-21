@@ -14,7 +14,7 @@ const ExpenseItem = styled(BasicWrapper)`
     background-color: #4b4b4b;
 `;
 
-const ExpenseItem_Description = styled.div`
+const ExpenseItemDescription = styled.div`
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -32,7 +32,7 @@ const ExpenseItem_Description = styled.div`
     }    
 `;
 
-const ExpenseItem_Price = styled.div`
+const ExpenseItemPrice = styled.div`
     font-size: 1rem;
     font-weight: bold;
     color: white;
@@ -54,11 +54,10 @@ export const ExpenseItems: FC<IExpenseItems> = (props) => {
     return (
         <ExpenseItem className>
             <ExpenseDate date = {props.date}/>
-            <ExpenseItem_Description>
+            <ExpenseItemDescription>
                 <h2>{props.title}</h2>
-                <ExpenseItem_Price>${props.amount}</ExpenseItem_Price>
-            </ExpenseItem_Description>
-            <button>Change Title</button>
+                <ExpenseItemPrice>${props.amount}</ExpenseItemPrice>
+            </ExpenseItemDescription>
         </ExpenseItem>
     )
 }

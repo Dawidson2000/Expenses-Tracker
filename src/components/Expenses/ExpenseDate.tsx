@@ -20,18 +20,18 @@ const ExpenseDateWrapper = styled(BasicWrapper)`
     justify-content: center;
 `;
 
-const ExpenseDate_Month = styled.div`
+const ExpenseDateMonth = styled.div`
     font-size: 0.75rem;
     font-weight: bold;
     padding: 2px 0;
 `;
 
-const ExpenseDate_Year = styled.div`
+const ExpenseDateYear = styled.div`
     font-size: 0.75rem;
     padding: 2px 0;
 `;
 
-const ExpenseDate_Day = styled.div`
+const ExpenseDateDay = styled.div`
    font-size: 1.5rem;
    font-weight: bold;
    padding: 2px 0;
@@ -45,9 +45,9 @@ export const ExpenseDate: FC<IExpenseDate> = (props) => {
 
     return (
         <ExpenseDateWrapper className>
-            <ExpenseDate_Month>{month}</ExpenseDate_Month>
-            <ExpenseDate_Day>{day}</ExpenseDate_Day>
-            <ExpenseDate_Year>{year}</ExpenseDate_Year>
+            <ExpenseDateMonth>{month}</ExpenseDateMonth>
+            <ExpenseDateDay>{day}</ExpenseDateDay>
+            <ExpenseDateYear>{year}</ExpenseDateYear>
         </ExpenseDateWrapper>
 
     )

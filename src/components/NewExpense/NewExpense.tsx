@@ -10,7 +10,7 @@ import type { Expense } from '../../models/ExpenseTypes/ExpenseType';
 const NewExpenseWrapper = styled.div`
     background-color: #a892ee;
     padding: 1rem;
-    margin: 2rem auto;
+    margin: 0 auto;
     width: 50rem;
     max-width: 95%;
     border-radius: 12px;

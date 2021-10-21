@@ -17,7 +17,7 @@ const ExpenseWrapper = styled(BasicWrapper)`
 `;
 
 export interface IExpenses {
-    expense: Expense[]
+    items: Expense[]
 }
 
 export const Expenses: FC<IExpenses> = (props) => {
@@ -31,31 +31,17 @@ export const Expenses: FC<IExpenses> = (props) => {
 
     return (
         <ExpenseWrapper className=''>
-            <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler}/>
-            <ExpenseItems
-                id={props.expense[0].id}
-                title={props.expense[0].title}
-                date={props.expense[0].date}
-                amount={props.expense[0].amount}
-            />
-            <ExpenseItems
-                id={props.expense[1].id}
-                title={props.expense[1].title}
-                date={props.expense[1].date}
-                amount={props.expense[1].amount}
-            />
-            <ExpenseItems
-                id={props.expense[2].id}
-                title={props.expense[2].title}
-                date={props.expense[2].date}
-                amount={props.expense[2].amount}
-            />
-            <ExpenseItems
-                id={props.expense[3].id}
-                title={props.expense[3].title}
-                date={props.expense[3].date}
-                amount={props.expense[3].amount}
-            />
+            <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler} />
+            
+            {props.items.filter(expense => expense.date.getFullYear() === +filteredYear).map(expense =>
+                <ExpenseItems
+                    key={expense.id}
+                    id={expense.id}
+                    title={expense.title}
+                    amount={expense.amount}
+                    date={expense.date}
+                />
+            )}
         </ExpenseWrapper>
     )
 }
