@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
 import { ExpenseForm } from './ExpenseForm';
+import { FormButton } from '../../components/styledHelpers/FormButton'
 
 import type { EnteredExpense } from '../../models/ExpenseTypes/EnteredExpenseType';
 import type { Expense } from '../../models/ExpenseTypes/ExpenseType';
@@ -24,6 +25,14 @@ export interface INewExpense {
 
 export const NewExpense: FC<INewExpense> = (props) => {
 
+    const [formVisibility, setFormVisibility] = useState<boolean>(false);
+    
+    const formVisibilityHandler = () => {
+        setFormVisibility(prevFormVisibilty => {
+            return !prevFormVisibilty;
+        })
+    }
+
     const saveExpenseDataHandler = (enteredExpenseData: EnteredExpense) => {
         const expenseData = {
             ...enteredExpenseData,
@@ -34,7 +43,9 @@ export const NewExpense: FC<INewExpense> = (props) => {
 
     return(
         <NewExpenseWrapper>
-            <ExpenseForm onSaveExpenseData={saveExpenseDataHandler}/>
+            {formVisibility ?
+            <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onformVisibilityHandler={formVisibilityHandler}/> : 
+            <FormButton type="button" onClick={formVisibilityHandler}>Add expense</FormButton>}
         </NewExpenseWrapper>
     )
 }

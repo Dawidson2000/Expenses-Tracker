@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { ExpenseItems } from './ExpenseItems';
 import { BasicWrapper } from '../styledHelpers/BasicWrapper';
 import { ExpenseFilter } from '../Expenses/ExpensesFilter';
+import { ExpenseList } from '../Expenses/ExpensesList';
 
 import type { Expense } from '../../models/ExpenseTypes/ExpenseType';
 
@@ -29,19 +30,12 @@ export const Expenses: FC<IExpenses> = (props) => {
         console.log(selectedYear);
     }
 
+    const filteredExpenses = props.items.filter(expense => expense.date.getFullYear() === +filteredYear);
+
     return (
         <ExpenseWrapper className=''>
             <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler} />
-            
-            {props.items.filter(expense => expense.date.getFullYear() === +filteredYear).map(expense =>
-                <ExpenseItems
-                    key={expense.id}
-                    id={expense.id}
-                    title={expense.title}
-                    amount={expense.amount}
-                    date={expense.date}
-                />
-            )}
+            <ExpenseList items={filteredExpenses}/>      
         </ExpenseWrapper>
     )
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FC } from 'react';
 
 import type { EnteredExpense } from '../../models/ExpenseTypes/EnteredExpenseType';
+import { FormButton } from '../../components/styledHelpers/FormButton'
 
 const NewExpenseControls = styled.div`
     display: flex;
@@ -29,32 +30,12 @@ const NewExpenseControl = styled.div`
 `;
 
 const NewExpenseActions = styled.div`
-    text-align: right;
-
-    & > button{
-        font-style: inherit;
-        cursor: pointer;
-        padding: 1rem 2rem;
-        border: 1px solid #40005d;
-        background-color: #40005d;
-        color: white;
-        border-radius: 12px;
-        margin-right: 1rem;
-
-        &:hover{
-            background-color: #510674;
-            border-color: #510674;
-        }
-
-        &:active{
-            background-color: #510674;
-            border-color: #510674;
-        }
-    }
+    text-align: right;   
 `;
 
 export interface IExpenseForm {
-    onSaveExpenseData: (enteredExpenseData: EnteredExpense) => void       
+    onSaveExpenseData: (enteredExpenseData: EnteredExpense) => void,
+    onformVisibilityHandler: () => void     
 }
 
 export const ExpenseForm: FC<IExpenseForm> = (props) => {
@@ -99,9 +80,8 @@ export const ExpenseForm: FC<IExpenseForm> = (props) => {
         setEnteredTitle('');
 
         props.onSaveExpenseData(expenseData);
-
     }
-
+    
     return (
         <form onSubmit={submitHandler}>
             <NewExpenseControls>
@@ -135,7 +115,8 @@ export const ExpenseForm: FC<IExpenseForm> = (props) => {
                 </NewExpenseControl>
             </NewExpenseControls>
             <NewExpenseActions>
-                <button type='submit'>Add Expense</button>
+                <FormButton type='button' onClick={props.onformVisibilityHandler}>Close</FormButton>
+                <FormButton type='submit'>Add Expense</FormButton>
             </NewExpenseActions>
         </form>
     )
