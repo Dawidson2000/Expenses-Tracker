@@ -6,6 +6,7 @@ import { ExpenseItems } from './ExpenseItems';
 import { BasicWrapper } from '../styledHelpers/BasicWrapper';
 import { ExpenseFilter } from '../Expenses/ExpensesFilter';
 import { ExpenseList } from '../Expenses/ExpensesList';
+import { ExpenseChart } from './ExpensesChart';
 
 import type { Expense } from '../../models/ExpenseTypes/ExpenseType';
 
@@ -34,6 +35,7 @@ export const Expenses: FC<IExpenses> = (props) => {
 
     return (
         <ExpenseWrapper className=''>
+            <ExpenseChart expenses={filteredExpenses}/>
             <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler} />
             <ExpenseList items={filteredExpenses}/>      
         </ExpenseWrapper>
