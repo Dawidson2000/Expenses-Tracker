@@ -18,14 +18,17 @@ const NewExpenseControl = styled.div`
         font-weight: bold;
         margin-bottom: 0.5rem;
         display: block;
+        color: white;
    }
    & > input{
         font-style: inherit;
-        padding: 0.5rem;
+        padding: 0.45rem;
         border-radius: 6px;
         border: 1px solid #ccc;
         width: 20rem;
         max-width: 100%;
+        outline: none;
+        font-size: 1rem;
    }
 `;
 

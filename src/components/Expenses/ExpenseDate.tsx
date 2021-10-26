@@ -12,12 +12,12 @@ const ExpenseDateWrapper = styled(BasicWrapper)`
     display: flex;
     flex-direction: column;
     width: 5.5rem;
-    height: 5.5rem;
-    border: 1px solid #ececec;
-    background-color: #2a2a2a;
+    height: 5.5rem; 
+    background-color: #9B2335;
     color: white;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); 
 `;
 
 const ExpenseDateMonth = styled.div`

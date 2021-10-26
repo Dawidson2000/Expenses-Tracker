@@ -23,6 +23,7 @@ const ExpensesFilterControl = styled.div`
         padding: 0.5rem 3rem;
         font-weight: bold;
         border-radius: 6px;
+        outline: none; 
     }     
 `;
 

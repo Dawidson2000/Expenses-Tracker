@@ -15,7 +15,7 @@ export interface IChart {
 const ChartWrapper = styled.div`
     padding: 1rem;
     border-radius: 12px;
-    background-color: #f8dfff;
+    background-color: #4b4b4b;
     text-align: center;
     display: flex;
     justify-content: space-around;

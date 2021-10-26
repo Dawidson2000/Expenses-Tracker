@@ -11,10 +11,9 @@ const ChartBarWrapper = styled.div`
 
 const ChartBarInner = styled.div`
     height: 100%;
-    width: 100%;
-    border: 1px solid #313131;
+    width: 17px;
     border-radius: 12px;
-    background-color: #c3b4f3;
+    background-color: grey;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -22,15 +21,17 @@ const ChartBarInner = styled.div`
 `;
 
 const ChartBarFill = styled.div`
-    background-color: #4826b9;
+    background-color: #9B2335;
     width: 100%;
     transition: all 0.3s ease-out;  
 `;
 
 const ChartBarLabel = styled.div`
     font-weight: bold;
-    font-size: 0.5rem;
-    text-align: center;    
+    font-size: 0.75rem;
+    text-align: center;
+    color: white;
+    padding-top: 5px;
 `;
 
 export interface IChartBar {

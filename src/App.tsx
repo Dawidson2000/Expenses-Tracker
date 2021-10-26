@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 100vh;
-  background-color: #4b4a4a;
+  background-color: #181818;
   padding-top: 2rem;
 `;
 

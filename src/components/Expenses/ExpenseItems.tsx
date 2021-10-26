@@ -25,7 +25,7 @@ const ExpenseItemDescription = styled.div`
 
     & > h2 {
         color: #3a3a3a;
-        font-size: 1rem;
+        font-size: 1.25rem;
         flex: 1;
         margin: 0 1rem;
         color: white;
@@ -33,13 +33,13 @@ const ExpenseItemDescription = styled.div`
 `;
 
 const ExpenseItemPrice = styled.div`
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     color: white;
-    background-color: #40005d;
-    border: 1px solid white;
+    background-color: #9B2335;
     padding: 0.5rem;
-    border-radius: 12px;   
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);    
 `;
 
 export interface IExpenseItems {
