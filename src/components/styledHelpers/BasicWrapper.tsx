@@ -8,12 +8,13 @@ const Wrapper = styled.div`
 `;
 
 export interface IWrapper {
-    className: any
+    className: any,
+    onDoubleClick?: any
 }
 
 export const BasicWrapper: FC<IWrapper> = (props) => {
 
     return(
-       <Wrapper className={props.className}>{props.children}</Wrapper>
+       <Wrapper className={props.className} onDoubleClick={props.onDoubleClick}>{props.children}</Wrapper>
     )
 }

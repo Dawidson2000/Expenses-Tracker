@@ -51,10 +51,17 @@ const addExpenseHandler = (expense: Expense) => {
   })
 }
 
+const deleteExpenseHandler = (expenseID: string) => {
+  setExpenses(prevExpenses => {
+    const updatedExpenses = prevExpenses.filter(expense => expense.id != expenseID);
+    return updatedExpenses;
+  })
+}
+
   return (
     <Wrapper>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses}/>
+      <Expenses items={expenses} onDeleteExpense={deleteExpenseHandler}/>
     </Wrapper>
   );
 }

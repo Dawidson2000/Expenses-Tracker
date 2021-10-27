@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
-import { ExpenseItems } from './ExpenseItems';
 import { BasicWrapper } from '../styledHelpers/BasicWrapper';
 import { ExpenseFilter } from '../Expenses/ExpensesFilter';
 import { ExpenseList } from '../Expenses/ExpensesList';
@@ -19,7 +18,8 @@ const ExpenseWrapper = styled(BasicWrapper)`
 `;
 
 export interface IExpenses {
-    items: Expense[]
+    items: Expense[],
+    onDeleteExpense: (expenseID: string) => void
 }
 
 export const Expenses: FC<IExpenses> = (props) => {
@@ -37,7 +37,7 @@ export const Expenses: FC<IExpenses> = (props) => {
         <ExpenseWrapper className=''>
             <ExpenseChart expenses={filteredExpenses}/>
             <ExpenseFilter selected={filteredYear} onSetSelectedYear={setSelectedYearHandler} />
-            <ExpenseList items={filteredExpenses}/>      
+            <ExpenseList items={filteredExpenses} onDeleteExpense={props.onDeleteExpense}/>      
         </ExpenseWrapper>
     )
 }

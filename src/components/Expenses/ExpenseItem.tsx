@@ -5,7 +5,7 @@ import { FC } from 'react';
 import {ExpenseDate} from './ExpenseDate';
 import { BasicWrapper } from '../styledHelpers/BasicWrapper';
 
-const ExpenseItem = styled(BasicWrapper)`
+const ExpenseItemWrapper = styled(BasicWrapper)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,17 +47,23 @@ export interface IExpenseItems {
     title: string,
     amount: number,
     date: Date,
+    onDelete: (expenseID: string) => void
 }
 
-export const ExpenseItems: FC<IExpenseItems> = (props) => {
+export const ExpenseItem: FC<IExpenseItems> = (props) => {
+
+    const deleteHandler = () => {
+        props.onDelete(props.id);
+    }
 
     return (
-        <ExpenseItem className>
+        <ExpenseItemWrapper className onDoubleClick={deleteHandler}>
             <ExpenseDate date = {props.date}/>
             <ExpenseItemDescription>
                 <h2>{props.title}</h2>
                 <ExpenseItemPrice>${props.amount}</ExpenseItemPrice>
             </ExpenseItemDescription>
-        </ExpenseItem>
+        </ExpenseItemWrapper>
+       
     )
 }
