@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
@@ -23,17 +23,26 @@ const ChartWrapper = styled.div`
 `;
 
 export const Chart: FC<IChart> = (props) => {
-    const valueOfMonthExpenses = props.dataPoints.map( month => month.value);
+    const [isValueVisible, setIsValueVisivble] = useState<boolean>(false);
+
+    const valueVisibleHandler = () => {
+        setIsValueVisivble(prevIsVisible => {
+            return !prevIsVisible;
+        })
+    }
+
+    const valueOfMonthExpenses = props.dataPoints.map(month => month.value);
     const maxFillValue = Math.max(...valueOfMonthExpenses);
 
     return (
-        <ChartWrapper>
+        <ChartWrapper onDoubleClick={valueVisibleHandler}>
             {props.dataPoints.map((dataPoints) => (
                 <ChartBar
                     key={dataPoints.label}
                     value={dataPoints.value}
                     maxValue={maxFillValue}
                     label={dataPoints.label}
+                    isValueVisible={isValueVisible}
                 />
             ))}
         </ChartWrapper>

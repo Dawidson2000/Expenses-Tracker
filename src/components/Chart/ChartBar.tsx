@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FC } from 'react';
 
@@ -6,7 +6,8 @@ const ChartBarWrapper = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
+    width: 10px;
 `;
 
 const ChartBarInner = styled.div`
@@ -31,16 +32,18 @@ const ChartBarLabel = styled.div`
     font-size: 0.75rem;
     text-align: center;
     color: white;
-    padding-top: 5px;
+    padding: 5px 0;
 `;
 
 export interface IChartBar {
     value: number,
     maxValue: number,
-    label: string
+    label: string,
+    isValueVisible: boolean
 }
 
 export const ChartBar: FC<IChartBar> = (props) => {
+
     let barFillHeight = '0%';
 
     if(props.maxValue > 0){
@@ -49,6 +52,7 @@ export const ChartBar: FC<IChartBar> = (props) => {
 
     return(
         <ChartBarWrapper>
+            {props.isValueVisible && <ChartBarLabel>{'$' + props.value}</ChartBarLabel>}
             <ChartBarInner>
                 <ChartBarFill style={{height: barFillHeight}}></ChartBarFill>
             </ChartBarInner>
